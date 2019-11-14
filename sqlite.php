@@ -3,12 +3,15 @@
 <head>
 	<title>Books vs Movie Adaptations</title>
 	<style type="text/css">
-		body{
+		html, body{
 			background-color: #202020;
+			height: 100%;
+			margin: 0px;
+			padding:0px;
 		}
+		
 		.heading{
 			color:#E50914;
-
 			text-align: center;
 		}
 		.flex{
@@ -40,18 +43,21 @@
 			border-radius: 0px 10px 0px 10px;
 		}
 		.Custom-box3{
+			box-shadow: 0px 0px 8px 0px black, 0px 0px 0px 4px #E50914;
+			margin: 4px;
+			padding-top: 20px;
 			
-		}
 
+		}
 	</style>
 
 </head>
 <body>
+<div class ="Custom-box3">
 	<h1 class = "heading">
-		<p>Books vs Movie Adaptions</p>
+		<p>Books vs Movie Adaptations</p>
 	</h1>
 	<center>
-	<div class = "Custom-box3">
 		<div class ="flex">
 			<!--Left Side-->
 			<div class = "Custom-box">
@@ -96,7 +102,11 @@
 				</p>
 			</div>
 		</div>
+	</center>
+	
+	<div style="margin:430px;"> <!--This is just a spacer tom move the page down-->
+		<p>.</p>
 	</div>
-</center>
+</div>	
 </body>
 </html>
