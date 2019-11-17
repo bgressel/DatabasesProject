@@ -29,6 +29,7 @@
 			margin:20px;
 			box-shadow: 1px 4px 8px 1px black, 0 6px 20px 6px #E50914;
 			text-align:center;
+			height:540px;
 		}
 		.Custom-box2{
 			background-color: #fffcda;
@@ -41,9 +42,10 @@
 			margin-bottom:20px;
 			border:4px #E50914 solid;
 			border-radius: 0px 10px 0px 10px;
+			
 		}
 		.Custom-box3{
-			box-shadow: 0px 0px 8px 0px black, 0px 0px 0px 4px #E50914;
+			box-shadow:  0px 0px 8px 0px black, 0px 0px 0px 4px #E50914;
 			margin: 4px;
 			padding-top: 20px;
 			
@@ -58,9 +60,24 @@
 		<p>Books vs Movie Adaptations</p>
 	</h1>
 	<center>
+		<!--Search button-->
+		<div class ="flex">
+				<!--Inner Box-->
+			<div class = "Custom-box" style=" height:auto;">
+				<div class = "Custom-box2">
+					<!--In form tag we will have an action and method. 
+						The name is i think the what the attribute is called. Method is either GET or POST-->
+					<form action="" method="">Enter Your Book/Movie: <input type="text" name="BookMovie" value="Search Book/Movie">
+						<input type="submit" value="Search">
+					</form>
+				</div>
+			</div>
+		</div>
+
 		<div class ="flex">
 			<!--Left Side-->
 			<div class = "Custom-box">
+				<h3 class = "heading">Book Rating</h3>
 				<p class = "Custom-box2">
 				<?php
 					$db = new SQLite3('mydb.sq3');
@@ -75,6 +92,7 @@
 			</div>
 			<!--Center-->
 			<div class = "Custom-box">
+				<h3 class = "heading">Searched Adaption</h3>
 				<p class = "Custom-box2">
 				<?php
 					$db = new SQLite3('mydb.sq3');
@@ -89,6 +107,7 @@
 			</div>
 			<!--Right Side-->
 			<div class = "Custom-box">
+				<h3 class = "heading">Movie Rating</h3>
 				<p class = "Custom-box2">
 				<?php
 					$db = new SQLite3('mydb.sq3');
@@ -103,10 +122,25 @@
 			</div>
 		</div>
 	</center>
+
+<!--Search button-->
+		<div class ="flex">
+				<!--Inner Box-->
+			<div class = "Custom-box" style=" height:auto;">
+				<h3 class = "heading">Create Your Own Rating</h3>
+				<div class = "Custom-box2" style = "text-align:right;">
+					<!--In form tag we will have an action and method. 
+						The name is i think the what the attribute is called. Method is either GET or POST-->
+					<form action="" method="">
+					Book/Movie Name: <input type="text" name="nameEnter"><br>
+					Book Rating: <input type="number" name="bookRating"><br>
+					Movie Rating: <input type="number" name="movieRating"><br>
+					<input type="submit">
+					</form>
+				</div>
+			</div>
+		</div>
 	
-	<div style="margin:430px;"> <!--This is just a spacer tom move the page down-->
-		<p>.</p>
-	</div>
 </div>	
 </body>
 </html>
