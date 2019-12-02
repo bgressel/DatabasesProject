@@ -81,10 +81,10 @@
 				<p class = "Custom-box2">
 				<?php
 					$db = new SQLite3('mydb.sq3');
-					$sql = "SELECT * FROM items WHERE price < 3.00";
+					$sql = "SELECT rating FROM book";
 					$result = $db->query($sql);
 					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-					  echo $row['name'] . ': $' . $row['price'] . '<br/>';
+					  echo $row['rating'] . '<br/>';
 					}
 					unset($db);
 				?>
@@ -96,10 +96,10 @@
 				<p class = "Custom-box2">
 				<?php
 					$db = new SQLite3('mydb.sq3');
-					$sql = "SELECT * FROM items WHERE price > 3.00";
+					$sql = "SELECT title FROM tvOrMovie";
 					$result = $db->query($sql);
 					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-					  echo $row['name'] . ': $' . $row['price'] . '<br/>';
+					  echo $row['title'] . '<br/>';
 					}
 					unset($db);
 				?>
@@ -111,10 +111,10 @@
 				<p class = "Custom-box2">
 				<?php
 					$db = new SQLite3('mydb.sq3');
-					$sql = "SELECT * FROM items WHERE price < 3.00";
+					$sql = "SELECT rating FROM tvOrMovie";
 					$result = $db->query($sql);
 					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-					  echo $row['name'] . ': $' . $row['price'] . '<br/>';
+					  echo $row['rating'] . '<br/>';
 					}
 					unset($db);
 				?>
