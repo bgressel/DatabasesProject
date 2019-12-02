@@ -67,18 +67,32 @@
 				<div class = "Custom-box2">
 					<!--In form tag we will have an action and method. 
 						The name is i think the what the attribute is called. Method is either GET or POST-->
-					<form action="" method="">Enter Your Book/Movie: <input type="text" name="BookMovie" value="Search Book/Movie">
-						<input type="submit" value="Search">
+					<form action="mydbSearch.php"  method="GET">Enter Your Book/Movie: <input type="text" name="BookMovie" value="">
+						<input type="submit"  value="Search">
 					</form>
 				</div>
 			</div>
 		</div>
 
+
+
+
+
+		<!--Testing
+		<?php
+			$message = "";
+			if(isset($_POST['SubmitButton'])){ //check if form was submitted
+			  $input = $_POST['inputText']; //get input text
+			  $message = "Success! You entered: ".$input;
+			}    
+		?>
+
+		-->
 		<div class ="flex">
 			<!--Left Side-->
 			<div class = "Custom-box">
 				<h3 class = "heading">Book Rating</h3>
-				<p class = "Custom-box2">
+				<p class = "Custom-box2" >
 				<?php
 					$db = new SQLite3('mydb.sq3');
 					$sql = "SELECT rating FROM book";
@@ -144,3 +158,4 @@
 </div>	
 </body>
 </html>
+
