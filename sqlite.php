@@ -29,7 +29,7 @@
 			margin:20px;
 			box-shadow: 1px 4px 8px 1px black, 0 6px 20px 6px #E50914;
 			text-align:center;
-			height:540px;
+			
 		}
 		.Custom-box2{
 			background-color: #fffcda;
@@ -67,55 +67,54 @@
 				<div class = "Custom-box2">
 					<!--In form tag we will have an action and method. 
 						The name is i think the what the attribute is called. Method is either GET or POST-->
-					<form action="mydbSearch.php"  method="GET">Enter Your Book/Movie: <input type="text" name="BookMovie" value="">
+					<form action="sqlite.php"  method="GET">Enter Your Book/Movie: <input type="text" name="BookMovie" value="">
 						<input type="submit"  value="Search">
+					</form>
+					<form action="bestAdapt.php"  method="GET">
+						<button action="bestAdapt.php" type="submit"style ="margin-top:10px;" name="BestAdapt">Best Adaptation</button>
 					</form>
 				</div>
 			</div>
 		</div>
 
 
-
-
-
-		<!--Testing
-		<?php
-			$message = "";
-			if(isset($_POST['SubmitButton'])){ //check if form was submitted
-			  $input = $_POST['inputText']; //get input text
-			  $message = "Success! You entered: ".$input;
-			}    
-		?>
-
-		-->
 		<div class ="flex">
+			
+			<!--Center-->
+			<div class = "Custom-box">
+				<h3 class = "heading">Searched Adaptation</h3>
+				<p class = "Custom-box2" align="left">
+				<?php
+					$db = new SQLite3('mydb.sq3');
+					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
+							$sql = "SELECT title, author
+							FROM book
+							WHERE book.title LIKE '%$BookMovie%'
+							ORDER BY book.title";
+							$result = $db->query($sql);
+							while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+							  echo $row['title'] . " (" . $row['author'] . ")" . '<br/>';
+							}
+							unset($db);
+				?>
+				</p>
+			</div>
 			<!--Left Side-->
 			<div class = "Custom-box">
 				<h3 class = "heading">Book Rating</h3>
 				<p class = "Custom-box2" >
 				<?php
 					$db = new SQLite3('mydb.sq3');
-					$sql = "SELECT rating FROM book";
-					$result = $db->query($sql);
-					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-					  echo $row['rating'] . '<br/>';
-					}
-					unset($db);
-				?>
-				</p>
-			</div>
-			<!--Center-->
-			<div class = "Custom-box">
-				<h3 class = "heading">Searched Adaption</h3>
-				<p class = "Custom-box2">
-				<?php
-					$db = new SQLite3('mydb.sq3');
-					$sql = "SELECT title FROM tvOrMovie";
-					$result = $db->query($sql);
-					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-					  echo $row['title'] . '<br/>';
-					}
-					unset($db);
+					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
+							$sql = "SELECT book.rating 
+							FROM  book
+							WHERE book.title LIKE '%$BookMovie%'
+							ORDER BY book.title";
+							$result = $db->query($sql);
+							while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+							  echo $row['rating'] . '<br/>';
+							}
+							unset($db);
 				?>
 				</p>
 			</div>
@@ -125,12 +124,35 @@
 				<p class = "Custom-box2">
 				<?php
 					$db = new SQLite3('mydb.sq3');
-					$sql = "SELECT rating FROM tvOrMovie";
-					$result = $db->query($sql);
-					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-					  echo $row['rating'] . '<br/>';
-					}
-					unset($db);
+					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
+							$sql = "SELECT tvOrMovie.rating 
+							FROM tvOrMovie
+							WHERE tvOrMovie.title LIKE '%$BookMovie%'
+							ORDER BY tvOrMovie.title";
+							$result = $db->query($sql);
+							while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+							  echo $row['rating'] . '<br/>';
+							}
+							unset($db);
+				?>
+				</p>
+			</div>
+			<!--Right Side-->
+			<div class = "Custom-box">
+				<h3 class = "heading">Production Company</h3>
+				<p class = "Custom-box2" align="left">
+				<?php
+					$db = new SQLite3('mydb.sq3');
+					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
+							$sql = "SELECT pcompany, year
+							FROM tvOrMovie
+							WHERE title LIKE '%$BookMovie%'
+							ORDER BY tvOrMovie.title";
+							$result = $db->query($sql);
+							while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+							  echo $row['pcompany'] . " (" . $row['year'] . ")" . '<br/>';
+							}
+							unset($db);
 				?>
 				</p>
 			</div>
@@ -146,9 +168,19 @@
 					<!--In form tag we will have an action and method. 
 						The name is i think the what the attribute is called. Method is either GET or POST-->
 					<form action="" method="">
-					Book/Movie Name: <input type="text" name="nameEnter"><br>
+					Book: <input type="text" name="nameEnter"><br>
+					Author: <input type="text" name="nameEnter"><br>
+					Publisher: <input type="text" name="nameEnter"><br>
 					Book Rating: <input type="number" name="bookRating"><br>
-					Movie Rating: <input type="number" name="movieRating"><br>
+					<input type="submit">
+					</form>
+				</div>
+					<div class = "Custom-box2" style = "text-align:right;">
+					<form action="" method="">
+					Movie Name: <input type="text" name="nameEnter"><br>
+					Production Company: <input type="text" name="nameEnter"><br>
+					Year: <input type="text" name="nameEnter"><br>
+					Movie Rating: <input type="number" name="bookRating"><br>
 					<input type="submit">
 					</form>
 				</div>
@@ -158,4 +190,3 @@
 </div>	
 </body>
 </html>
-
