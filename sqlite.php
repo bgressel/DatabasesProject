@@ -188,58 +188,58 @@
 					<!--In form tag we will have an action and method. 
 						The name is i think the what the attribute is called. Method is either GET or POST-->
 					<form action="sqlite.php"  method="GET">
-					Book: <input type="text" name="bookEnter"><br>
-					Author: <input type="text" name="authorEnter"><br>
-					Publisher: <input type="text" name="publisherEnter"><br>
-					Book Rating: <input type="number" name="bookRating"><br>
+					Book: <input type="text" name="ibookEnter"><br>
+					Author: <input type="text" name="iauthorEnter"><br>
+					Publisher: <input type="text" name="ipublisherEnter"><br>
+					Book Rating: <input type="number" name="ibookRating"><br>
 					<input type="submit">
 					</form>
 						<?php
 						$db = new SQLite3('mydb.sq3');
 						
-						$authorEnter = (isset($_GET['authorEnter']) ? $_GET['authorEnter']: '');
-						$publisherEnter = (isset($_GET['publisherEnter']) ? $_GET['publisherEnter']: '');
-						$bookRating = (isset($_GET['bookRating']) ? $_GET['bookRating']: '');
-						$bookEnter = (isset($_GET['bookEnter']) ? $_GET['bookEnter']: '');
-
-								$sql = "INSERT or REPLACE INTO `book` (`title`,`rating`,`author`,`pcompany`) VALUES ('$bookEnter','$bookRating','$authorEnter','$publisherEnter');";
+						$iauthorEnter = (isset($_GET['iauthorEnter']) ? $_GET['iauthorEnter']: '');
+						$ipublisherEnter = (isset($_GET['ipublisherEnter']) ? $_GET['ipublisherEnter']: '');
+						$ibookRating = (isset($_GET['ibookRating']) ? $_GET['ibookRating']: '');
+						$ibookEnter = (isset($_GET['ibookEnter']) ? $_GET['ibookEnter']: '');
+							if ('$ibookEnter'<>''){
+								$sql = "INSERT or REPLACE INTO `book` (`title`,`rating`,`author`,`pcompany`) VALUES ('$ibookEnter','$ibookRating','$iauthorEnter','$ipublisherEnter');";
 								$db->query($sql);
-								$sql = "INSERT or REPLACE INTO `tvOrMovie` (`title`,`rating`,`year`,`pcompany`) VALUES ('$bookEnter','','','');";
+								$sql = "INSERT or REPLACE INTO `tvOrMovie` (`title`,`rating`,`year`,`pcompany`) VALUES ('$ibookEnter','','','');";
 								$db->query($sql);
 								
 								unset($db);
 								$db = new SQLite3('mydb.sq3');
 								$db->query($sql);
 								unset($db);
-								
+								}
 						?>
 				</div>
 					<div class = "Custom-box2" style = "text-align:right;">
 					<form action="sqlite.php"  method="GET">
-					Movie Name: <input type="text" name="movieEnter"><br>
-					Production Company: <input type="text" name="productionEnter"><br>
-					Year: <input type="text" name="yearEnter"><br>
-					Movie Rating: <input type="number" name="movieRating"><br>
+					Movie Name: <input type="text" name="imovieEnter"><br>
+					Production Company: <input type="text" name="iproductionEnter"><br>
+					Year: <input type="text" name="iyearEnter"><br>
+					Movie Rating: <input type="number" name="imovieRating"><br>
 					<input type="submit">
 					</form>
 					<?php
 					$db = new SQLite3('mydb.sq3');
 						
-						$movieEnter = (isset($_GET['movieEnter']) ? $_GET['movieEnter']: '');
-						$productionEnter = (isset($_GET['productionEnter']) ? $_GET['productionEnter']: '');
-						$yearEnter = (isset($_GET['yearEnter']) ? $_GET['yearEnter']: '');
-						$movieRating = (isset($_GET['movieRating']) ? $_GET['movieRating']: '');
-
-								$sql = "INSERT or REPLACE INTO `book` (`title`,`rating`,`author`,`pcompany`) VALUES ('$movieEnter','','','');";
+						$imovieEnter = (isset($_GET['imovieEnter']) ? $_GET['imovieEnter']: '');
+						$iproductionEnter = (isset($_GET['iproductionEnter']) ? $_GET['iproductionEnter']: '');
+						$iyearEnter = (isset($_GET['iyearEnter']) ? $_GET['iyearEnter']: '');
+						$imovieRating = (isset($_GET['imovieRating']) ? $_GET['imovieRating']: '');
+							if ('$imovieEnter'<>''){
+								$sql = "INSERT or REPLACE INTO `book` (`title`,`rating`,`author`,`pcompany`) VALUES ('$imovieEnter','','','');";
 								$db->query($sql);
-								$sql = "INSERT or REPLACE INTO `tvOrMovie` (`title`,`rating`,`year`,`pcompany`) VALUES ('$movieEnter','$movieRating','$yearEnter','$productionEnter');";
+								$sql = "INSERT or REPLACE INTO `tvOrMovie` (`title`,`rating`,`year`,`pcompany`) VALUES ('$imovieEnter','$imovieRating','$iyearEnter','$iproductionEnter');";
 								$db->query($sql);
 								
 								unset($db);
 								$db = new SQLite3('mydb.sq3');
 								$db->query($sql);
 								unset($db);
-								
+								}
 						?>
 				</div>
 			</div>
@@ -251,70 +251,59 @@
 					<!--In form tag we will have an action and method. 
 						The name is i think the what the attribute is called. Method is either GET or POST-->
 					<form action="sqlite.php"  method="GET">
-					Book: <input type="text" name="bookEnter"><br>
-					Author: <input type="text" name="authorEnter"><br>
-					Publisher: <input type="text" name="publisherEnter"><br>
-					Book Rating: <input type="number" name="bookRating"><br>
+					Book: <input type="text" name="ubookEnter"><br>
+					Author: <input type="text" name="uauthorEnter"><br>
+					Publisher: <input type="text" name="upublisherEnter"><br>
+					Book Rating: <input type="number" name="ubookRating"><br>
 					<input type="submit">
 					</form>
 						<?php
 						$db = new SQLite3('mydb.sq3');
 						
-						$authorEnter = (isset($_GET['authorEnter']) ? $_GET['authorEnter']: '');
-						$publisherEnter = (isset($_GET['publisherEnter']) ? $_GET['publisherEnter']: '');
-						$bookRating = (isset($_GET['bookRating']) ? $_GET['bookRating']: '');
-						$bookEnter = (isset($_GET['bookEnter']) ? $_GET['bookEnter']: '');
-
+						$uauthorEnter = (isset($_GET['uauthorEnter']) ? $_GET['uauthorEnter']: '');
+						$upublisherEnter = (isset($_GET['upublisherEnter']) ? $_GET['upublisherEnter']: '');
+						$ubookRating = (isset($_GET['ubookRating']) ? $_GET['ubookRating']: '');
+						$ubookEnter = (isset($_GET['ubookEnter']) ? $_GET['ubookEnter']: '');
+							if ('$ubookEnter'<>''){
 								$sql = "UPDATE `book` 
-								SET rating='$bookRating',author='$authorEnter',pcompany='$publisherEnter' 
-								WHERE `title`='$bookEnter';";
+								SET rating='$ubookRating',author='$uauthorEnter',pcompany='$upublisherEnter' 
+								WHERE `title`='$ubookEnter';";
 								$db->query($sql);
 						
 								unset($db);
 								$db = new SQLite3('mydb.sq3');
 								$db->query($sql);
 								unset($db);
-								
+								}
 						?>
 				</div>
 					<div class = "Custom-box2" style = "text-align:right;">
 					<form action="sqlite.php"  method="GET">
-					Movie Name: <input type="text" name="movieEnter"><br>
-					Production Company: <input type="text" name="productionEnter"><br>
-					Year: <input type="text" name="yearEnter"><br>
-					Movie Rating: <input type="number" name="movieRating"><br>
+					Movie Name: <input type="text" name="umovieEnter"><br>
+					Production Company: <input type="text" name="uproductionEnter"><br>
+					Year: <input type="text" name="uyearEnter"><br>
+					Movie Rating: <input type="number" name="umovieRating"><br>
 					<input type="submit">
 					</form>
 					<?php
 					$db = new SQLite3('mydb.sq3');
 						
-						$movieEnter = (isset($_GET['movieEnter']) ? $_GET['movieEnter']: '');
-						$productionEnter = (isset($_GET['productionEnter']) ? $_GET['productionEnter']: '');
-						$yearEnter = (isset($_GET['yearEnter']) ? $_GET['yearEnter']: '');
-						$movieRating = (isset($_GET['movieRating']) ? $_GET['movieRating']: '');
-
+						$umovieEnter = (isset($_GET['umovieEnter']) ? $_GET['umovieEnter']: '');
+						$uproductionEnter = (isset($_GET['uproductionEnter']) ? $_GET['uproductionEnter']: '');
+						$uyearEnter = (isset($_GET['uyearEnter']) ? $_GET['uyearEnter']: '');
+						$umovieRating = (isset($_GET['umovieRating']) ? $_GET['umovieRating']: '');
+							if ('$umovieEnter'<>''){
 								$sql = "UPDATE `tvOrMovie` 
-								SET rating='$movieRating',year='$yearEnter',pcompany='$productionEnter' 
-								WHERE `title`='$movieEnter';";
+								SET rating='$umovieRating',year='$uyearEnter',pcompany='$uproductionEnter' 
+								WHERE `title`='$umovieEnter';";
 								$db->query($sql);
-								$sql = "UPDATE `book` 
-								SET rating=(SELECT rating
-											FROM  book
-											WHERE `title`='$movieEnter'),
-									author=(SELECT author
-											FROM  book
-											WHERE `title`='$movieEnter'),
-									pcompany=(SELECT pcompany
-											FROM  book
-											WHERE `title`='$movieEnter') 
-								WHERE `title`='$movieEnter';";
-								$db->query($sql);
+								
 						
 								unset($db);
 								$db = new SQLite3('mydb.sq3');
 								$db->query($sql);
 								unset($db);
-								
+								}
 						?>
 				</div>
 			</div>
