@@ -285,7 +285,19 @@ INSERT INTO `pCompany` (`name`, `location`) VALUES
 INSERT INTO `pCompany` (`name`, `location`) VALUES
 ('Quirk', 'New York City');
 
+CREATE VIEW titlejoin AS 
+SELECT book.title AS title, book.pcompany, book.rating AS bookrating, tvormovie.rating AS tvrating, tvormovie.pcompany
+FROM book JOIN tvOrMovie
+WHERE book.title = tvOrMovie.title
+ORDER BY book.title ASC;
 
+CREATE VIEW ratingdiff AS 
+SELECT title, bookrating, tvrating, tvrating-bookrating AS diff
+FROM titlejoin
+ORDER BY diff DESC;
 
-
+SELECT title
+FROM ratingdiff
+WHERE diff = (SELECT MAX(diff)
+			  FROM ratingdiff);
 
