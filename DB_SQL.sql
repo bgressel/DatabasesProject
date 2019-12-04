@@ -287,7 +287,7 @@ INSERT INTO `pCompany` (`name`, `location`) VALUES
 
 CREATE VIEW titlejoin AS 
 SELECT book.title AS title, book.pcompany, book.rating AS bookrating, tvormovie.rating AS tvrating, tvormovie.pcompany
-FROM book JOIN tvOrMovie
+FROM book INNER JOIN tvOrMovie
 WHERE book.title = tvOrMovie.title
 ORDER BY book.title ASC;
 
