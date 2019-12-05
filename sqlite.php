@@ -92,7 +92,7 @@
 					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
 					$sql = "SELECT title, author
 					FROM titlejoin
-					WHERE title LIKE '%$BookMovie%'
+					WHERE title LIKE '%$BookMovie%' OR tvyear LIKE '%$BookMovie%' OR bookpublisher LIKE '%$BookMovie%' OR tvproduction LIKE '%$BookMovie%' OR author LIKE '%$BookMovie%' 
 					ORDER BY title";
 					$result = $db->query($sql);
 					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
@@ -112,7 +112,7 @@
 					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
 					$sql = "SELECT bookpublisher
 					FROM titlejoin
-					WHERE title LIKE '%$BookMovie%'
+					WHERE title LIKE '%$BookMovie%' OR tvyear LIKE '%$BookMovie%' OR bookpublisher LIKE '%$BookMovie%' OR tvproduction LIKE '%$BookMovie%' OR author LIKE '%$BookMovie%' 
 					ORDER BY title";
 					$result = $db->query($sql);
 					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
@@ -132,7 +132,7 @@
 					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
 					$sql = "SELECT bookrating
 					FROM titlejoin
-					WHERE title LIKE '%$BookMovie%'
+					WHERE title LIKE '%$BookMovie%' OR tvyear LIKE '%$BookMovie%' OR bookpublisher LIKE '%$BookMovie%' OR tvproduction LIKE '%$BookMovie%' OR author LIKE '%$BookMovie%' 
 					ORDER BY title";
 					$result = $db->query($sql);
 					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
@@ -152,7 +152,7 @@
 					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
 					$sql = "SELECT tvrating
 					FROM titlejoin
-					WHERE title LIKE '%$BookMovie%'
+					WHERE title LIKE '%$BookMovie%' OR tvyear LIKE '%$BookMovie%' OR bookpublisher LIKE '%$BookMovie%' OR tvproduction LIKE '%$BookMovie%' OR author LIKE '%$BookMovie%' 
 					ORDER BY title";
 					$result = $db->query($sql);
 					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
@@ -172,7 +172,7 @@
 					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
 					$sql = "SELECT tvproduction, tvyear
 					FROM titlejoin
-					WHERE title LIKE '%$BookMovie%'
+					WHERE title LIKE '%$BookMovie%' OR tvyear LIKE '%$BookMovie%' OR bookpublisher LIKE '%$BookMovie%' OR tvproduction LIKE '%$BookMovie%' OR author LIKE '%$BookMovie%' 
 					ORDER BY title";
 					$result = $db->query($sql);
 					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
