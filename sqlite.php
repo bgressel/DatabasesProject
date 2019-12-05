@@ -64,6 +64,7 @@
 <!--Search button-->
 		<div class ="flex">
 				<!--Inner Box-->
+				<img src="Picture1.png" style=" min-width:200px;max-width: 3%; height:auto; margin-right:80px;">
 			<div class = "Custom-box" style=" height:auto;">
 				<div class = "Custom-box2">
 					<!--In form tag we will have an action and method. 
@@ -79,6 +80,7 @@
 					</form>
 				</div>
 			</div>
+			<img src="Picture2.png" style=" min-width:200px;max-width: 3%; height:auto; margin-left:80px;">
 		</div>
 
 		<div class ="flex">
