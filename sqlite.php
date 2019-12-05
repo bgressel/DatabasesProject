@@ -61,7 +61,7 @@
 		<p>Books vs Movie Adaptations</p>
 	</h1>
 	<center>
-		<!--Search button-->
+<!--Search button-->
 		<div class ="flex">
 				<!--Inner Box-->
 			<div class = "Custom-box" style=" height:auto;">
@@ -72,7 +72,10 @@
 						<input type="submit"  value="Search">
 					</form>
 					<form action="bestAdapt.php"  method="GET">
-						<button action="bestAdapt.php" type="submit"style ="margin-top:10px;" name="BestAdapt">Best Adaptation</button>
+						<button action="bestAdapt.php" type="submit"style ="margin-top:10px;" name="BookMovie">Best Adaptation</button>
+					</form>
+					<form action="imfeelinglucky.php"  method="GET">
+						<button action="imfeelinglucky.php" type="submit"style ="margin-top:10px;" name="random">I'm Feeling Lucky</button>
 					</form>
 				</div>
 			</div>
@@ -80,106 +83,109 @@
 
 		<div class ="flex">
 			
-			<!--Center-->
+<!--TITLE-->
 			<div class = "Custom-box">
-				<h3 class = "heading">Searched Adaptation</h3>
+				<h3 class = "heading">Title</h3>
 				<p class = "Custom-box2" align="left">
 				<?php
 					$db = new SQLite3('mydb.sq3');
 					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
-							$sql = "SELECT title, author
-							FROM book
-							WHERE book.title LIKE '%$BookMovie%'
-							ORDER BY book.title";
-							$result = $db->query($sql);
-							while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-							  echo $row['title'] . " (" . $row['author'] . ")" . '<br/>';
-							}
-							unset($db);
+					$sql = "SELECT title, author
+					FROM titlejoin
+					WHERE title LIKE '%$BookMovie%'
+					ORDER BY title";
+					$result = $db->query($sql);
+					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+					  echo $row['title'] . " (" . $row['author'] . ")" . '<br/>';
+					}
+					unset($db);
 				?>
 				</p>
 			</div>
-			<!--Left Side-->
+
+<!--PUBLISHER-->
 			<div class = "Custom-box">
 				<h3 class = "heading">Publisher</h3>
 				<p class = "Custom-box2" align="left" >
 				<?php
 					$db = new SQLite3('mydb.sq3');
 					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
-							$sql = "SELECT book.pcompany
-							FROM  book
-							WHERE book.title LIKE '%$BookMovie%'
-							ORDER BY book.title";
-							$result = $db->query($sql);
-							while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-							  echo $row['pcompany'] . '<br/>';
-							}
-							unset($db);
+					$sql = "SELECT bookpublisher
+					FROM titlejoin
+					WHERE title LIKE '%$BookMovie%'
+					ORDER BY title";
+					$result = $db->query($sql);
+					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+					  echo $row['bookpublisher'] . '<br/>';
+					}
+					unset($db);
 				?>
 				</p>
 			</div>
-			<!-- End of publisher-->
-			<!--Left Side-->
+
+<!--BOOK RATING-->
 			<div class = "Custom-box">
 				<h3 class = "heading">Book Rating</h3>
 				<p class = "Custom-box2" >
 				<?php
 					$db = new SQLite3('mydb.sq3');
 					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
-							$sql = "SELECT book.rating 
-							FROM  book
-							WHERE book.title LIKE '%$BookMovie%'
-							ORDER BY book.title";
-							$result = $db->query($sql);
-							while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-							  echo $row['rating'] . '<br/>';
-							}
-							unset($db);
+					$sql = "SELECT bookrating
+					FROM titlejoin
+					WHERE title LIKE '%$BookMovie%'
+					ORDER BY title";
+					$result = $db->query($sql);
+					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+					  echo $row['bookrating'] . '<br/>';
+					}
+					unset($db);
 				?>
 				</p>
 			</div>
-			<!--Right Side-->
+
+<!--MOVIE RATING-->
 			<div class = "Custom-box">
 				<h3 class = "heading">Movie Rating</h3>
 				<p class = "Custom-box2">
 				<?php
 					$db = new SQLite3('mydb.sq3');
 					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
-							$sql = "SELECT tvOrMovie.rating 
-							FROM tvOrMovie
-							WHERE tvOrMovie.title LIKE '%$BookMovie%'
-							ORDER BY tvOrMovie.title";
-							$result = $db->query($sql);
-							while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-							  echo $row['rating'] . '<br/>';
-							}
-							unset($db);
+					$sql = "SELECT tvrating
+					FROM titlejoin
+					WHERE title LIKE '%$BookMovie%'
+					ORDER BY title";
+					$result = $db->query($sql);
+					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+					  echo $row['tvrating'] . '<br/>';
+					}
+					unset($db);
 				?>
 				</p>
 			</div>
-			<!--Right Side-->
+
+<!--PRODUCTION COLUMN-->
 			<div class = "Custom-box">
 				<h3 class = "heading">Production Company</h3>
 				<p class = "Custom-box2" align="left">
 				<?php
 					$db = new SQLite3('mydb.sq3');
 					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
-							$sql = "SELECT pcompany, year
-							FROM tvOrMovie
-							WHERE title LIKE '%$BookMovie%'
-							ORDER BY tvOrMovie.title";
-							$result = $db->query($sql);
-							while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-							  echo $row['pcompany'] . " (" . $row['year'] . ")" . '<br/>';
-							}
-							unset($db);
+					$sql = "SELECT tvproduction, tvyear
+					FROM titlejoin
+					WHERE title LIKE '%$BookMovie%'
+					ORDER BY title";
+					$result = $db->query($sql);
+					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+					  echo $row['tvproduction'] . " (" . $row['tvyear'] . ")" . '<br/>';
+					}
+					unset($db);
 				?>
 				</p>
 			</div>
 		</div>
 	</center>
 
-<!--Search button-->
+<!--INPUT-->
 		<div class ="flex">
 				<!--Inner Box-->
 			<div class = "Custom-box" style=" height:auto;">
@@ -191,7 +197,7 @@
 					Book: <input type="text" name="ibookEnter"><br>
 					Author: <input type="text" name="iauthorEnter"><br>
 					Publisher: <input type="text" name="ipublisherEnter"><br>
-					Book Rating: <input type="number" name="ibookRating"><br>
+					Book Rating: <input type="number" name="ibookRating" min="0" max="10"><br>
 					<input type="submit">
 					</form>
 						<?php
@@ -219,7 +225,7 @@
 					Movie Name: <input type="text" name="imovieEnter"><br>
 					Production Company: <input type="text" name="iproductionEnter"><br>
 					Year: <input type="text" name="iyearEnter"><br>
-					Movie Rating: <input type="number" name="imovieRating"><br>
+					Movie Rating: <input type="number" name="imovieRating" min="0" max="10"><br>
 					<input type="submit">
 					</form>
 					<?php
@@ -243,8 +249,8 @@
 						?>
 				</div>
 			</div>
-			<!--Inner Box-->
-			
+
+<!--UPDATE-->
 			<div class = "Custom-box" style=" height:auto;">
 				<h3 class = "heading">Update Existing Rating</h3>
 				<div class = "Custom-box2" style = "text-align:right;">
@@ -254,7 +260,7 @@
 					Book: <input type="text" name="ubookEnter"><br>
 					Author: <input type="text" name="uauthorEnter"><br>
 					Publisher: <input type="text" name="upublisherEnter"><br>
-					Book Rating: <input type="number" name="ubookRating"><br>
+					Book Rating: <input type="number" name="ubookRating"  min="0" max="10"><br>
 					<input type="submit">
 					</form>
 						<?php
@@ -282,7 +288,7 @@
 					Movie Name: <input type="text" name="umovieEnter"><br>
 					Production Company: <input type="text" name="uproductionEnter"><br>
 					Year: <input type="text" name="uyearEnter"><br>
-					Movie Rating: <input type="number" name="umovieRating"><br>
+					Movie Rating: <input type="number" name="umovieRating" min="0" max="10"><br>
 					<input type="submit">
 					</form>
 					<?php
@@ -308,7 +314,7 @@
 				</div>
 			</div>
 
-				<!--Inner Box-->
+<!--DELETE-->
 			<div class = "Custom-box" style=" height:auto;">
 				<h2 class = "heading">Delete a Movie/Book Entry</h2>
 				<div class = "Custom-box2">

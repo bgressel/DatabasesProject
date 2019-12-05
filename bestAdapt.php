@@ -87,16 +87,15 @@
 				<p class = "Custom-box2" >
 				<?php
 					$db = new SQLite3('mydb.sq3');
-					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
-							$sql = "SELECT title 
-							FROM book
-							WHERE book.title LIKE '%$BookMovie%'
-							ORDER BY book.title";
-							$result = $db->query($sql);
-							while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-							  echo $row['title'] . '<br/>';
-							}
-							unset($db);
+					$sql = "SELECT title, diff
+							FROM ratingdiff
+							WHERE diff = (SELECT MAX(diff)
+										  FROM ratingdiff)";
+					$result = $db->query($sql);
+					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+					  echo $row['title'] . " " . $row['diff'] . '<br/>';
+					}
+					unset($db);
 				?>
 				</p>
 			</div>
@@ -107,17 +106,17 @@
 				<p class = "Custom-box2">
 				<?php
 					$db = new SQLite3('mydb.sq3');
-					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
-							$sql = "SELECT tvOrMovie.pcompany
-							FROM tvOrMovie
-							WHERE tvOrMovie.title LIKE '%$BookMovie%'
-							ORDER BY tvOrMovie.title";
-							$result = $db->query($sql);
-							while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-							  echo $row['pcompany'] . '<br/>';
-							}
-							unset($db);
+					$sql = "SELECT title, diff
+							FROM ratingdiff
+							WHERE diff = (SELECT MIN(diff)
+										  FROM ratingdiff)";
+					$result = $db->query($sql);
+					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+					  echo $row['title'] . " " . $row['diff'] . '<br/>';
+					}
+					unset($db);
 				?>
+				</p>
 				</p>
 			</div>
 
@@ -125,24 +124,22 @@
 
 
 		
-		<!--Searched Adaptation-->
+		<!--Title-->
 		<div class ="flex" >
 		<div class = "Custom-box4">
 			<div class = "Custom-box" style = "margin: 10px;">
-				<h3 class = "heading">Searched Adaptation</h3>
+				<h3 class = "heading">Title</h3>
 				<p class = "Custom-box2" align="left">
 				<?php
 					$db = new SQLite3('mydb.sq3');
-					$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
-							$sql = "SELECT title, author
-							FROM book
-							WHERE book.title LIKE '%$BookMovie%'
-							ORDER BY book.title";
-							$result = $db->query($sql);
-							while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-							  echo $row['title'] . " (" . $row['author'] . ")" . '<br/>';
-							}
-							unset($db);
+					$sql = "SELECT title, author
+							FROM ratingdiff
+							ORDER BY diff DESC";
+					$result = $db->query($sql);
+					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+					  echo $row['title'] . " (" . $row['author'] . ")" . '<br/>';
+					}
+					unset($db);
 				?>
 				</p>
 			</div>
@@ -154,16 +151,14 @@
 					<p class = "Custom-box2" >
 					<?php
 						$db = new SQLite3('mydb.sq3');
-						$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
-								$sql = "SELECT book.rating 
-								FROM  book
-								WHERE book.title LIKE '%$BookMovie%'
-								ORDER BY book.title";
-								$result = $db->query($sql);
-								while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-								  echo $row['rating'] . '<br/>';
-								}
-								unset($db);
+						$sql = "SELECT bookrating
+								FROM ratingdiff
+								ORDER BY diff DESC";
+						$result = $db->query($sql);
+						while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+						  echo $row['bookrating'] . '<br/>';
+						}
+						unset($db);
 					?>
 					</p>
 				</div>
@@ -175,16 +170,14 @@
 					<p class = "Custom-box2">
 					<?php
 						$db = new SQLite3('mydb.sq3');
-						$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
-								$sql = "SELECT tvOrMovie.rating 
-								FROM tvOrMovie
-								WHERE tvOrMovie.title LIKE '%$BookMovie%'
-								ORDER BY tvOrMovie.title";
-								$result = $db->query($sql);
-								while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-								  echo $row['rating'] . '<br/>';
-								}
-								unset($db);
+						$sql = "SELECT tvrating
+								FROM ratingdiff
+								ORDER BY diff DESC";
+						$result = $db->query($sql);
+						while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+						  echo $row['tvrating'] . '<br/>';
+						}
+						unset($db);
 					?>
 					</p>
 				</div>
@@ -195,17 +188,15 @@
 					<h3 class = "heading">Difference</h3>
 					<p class = "Custom-box2">
 					<?php
-						$db = new SQLite3('mydb.sq3');
-						$BookMovie = (isset($_GET['BookMovie']) ? $_GET['BookMovie']: '%');
-								$sql = "SELECT tvOrMovie.pcompany
-								FROM tvOrMovie
-								WHERE tvOrMovie.title LIKE '%$BookMovie%'
-								ORDER BY tvOrMovie.title";
-								$result = $db->query($sql);
-								while ($row = $result->fetchArray(SQLITE3_ASSOC)){
-								  echo $row['pcompany'] . '<br/>';
-								}
-								unset($db);
+					$db = new SQLite3('mydb.sq3');
+					$sql = "SELECT diff
+							FROM ratingdiff
+							ORDER BY diff DESC";
+					$result = $db->query($sql);
+					while ($row = $result->fetchArray(SQLITE3_ASSOC)){
+					  echo  $row['diff'] . '<br/>';
+					}
+					unset($db);
 					?>
 					</p>
 				</div>
@@ -214,23 +205,7 @@
 			</div>
 	</center>
 
-<!--Search button-->
-		<div class ="flex">
-				<!--Inner Box-->
-			<div class = "Custom-box" style=" height:auto;">
-				<h3 class = "heading">Create Your Own Rating</h3>
-				<div class = "Custom-box2" style = "text-align:right;">
-					<!--In form tag we will have an action and method. 
-						The name is i think the what the attribute is called. Method is either GET or POST-->
-					<form action="" method="">
-					Book/Movie Name: <input type="text" name="nameEnter"><br>
-					Book Rating: <input type="number" name="bookRating"><br>
-					Movie Rating: <input type="number" name="movieRating"><br>
-					<input type="submit">
-					</form>
-				</div>
-			</div>
-		</div>
+
 	
 </div>	
 </body>
